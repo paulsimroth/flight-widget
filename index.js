@@ -30,13 +30,17 @@ let flights = [
         info: "DELAYED"
     },
     {
-        time: "23:30",
+        time: "15:30",
         destination: "BKK",
         flight: "OS078",
         gate: "G18",
         info: ""
     }
 ];
+
+const destinations = ["NRT", "KUL", "BKK", "VIE", "FRA", "MUC", "ADD", "DXB", "SFO", "LAX", "LHR"]
+const infos = ["CLOSED", "BOARDING", "GATE OPEN", "DELAYED", "CANCELLED"]
+let hours = 15;
 
 function populateTable() {
     for (const flight of flights) {
@@ -64,3 +68,50 @@ function populateTable() {
 };
 
 populateTable();
+
+function generateRndLetter() {
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    return alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+};
+
+function generateRndNum(maxNr) {
+    const numbers = "0123456789";
+    if (maxNr) {
+        const newNumbers = numbers.slice(0, maxNr + 1);
+        return newNumbers.charAt(Math.floor(Math.random() * newNumbers.length));
+    }
+    return numbers.charAt(Math.floor(Math.random() * numbers.length));
+};
+
+function generateTime() {
+    let displayHour = hours;
+
+    if (hours <= 24) {
+        hours++
+    }
+    if (hours >= 24) {
+        hours = 1
+        displayHour = hours
+    }
+    if (hours < 10) {
+        displayHour = "0" + displayHour
+    }
+
+    return displayHour + ":" + generateRndNum(5) + generateRndNum();
+};
+
+function shuffleUp() {
+    flights.shift();
+    flights.push({
+        time: generateTime(),
+        destination: destinations[Math.floor(Math.random() * destinations.length)],
+        flight: generateRndLetter() + generateRndLetter() + generateRndNum() + generateRndNum() + generateRndNum(),
+        gate: generateRndLetter() + generateRndNum() + generateRndNum(),
+        info: infos[Math.floor(Math.random() * infos.length)]
+    })
+
+    tableBody.textContent = ""
+    populateTable()
+};
+
+setInterval(shuffleUp, 5000);
