@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+
+* {
+    font-family: 'Source Code Pro', monospace;
+    color: rgb(240, 240, 240);
+    font-size: 30px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    background-color: rgb(251, 199, 127);
+}
+
+header {
+    padding: 10px;
+}
+
+.departures {
+    background-color: rgb(6, 6, 6);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.departures table {
+    background-color: rgb(46, 46, 46);
+    text-align: left;
+}
+
+.departures table td {
+    height: 50px;
+}
+
+.departures table div {
+    border: solid 4px rgb(26, 26, 26);
+    background-color: black;
+    float: left;
+    height: 40px;
+}
+
+#time {
+    width: 180px;
+}
+
+#destination {
+    width: 120px;
+}
+
+#flight {
+    width: 180px;
+}
+
+#gate {
+    width: 100px
+}
+
+#info {
+    width: 260px;
+}
+
+.flip {
+    animation: 0.5s linear flipping;
+}
+
+@keyframes flipping {
+    0% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
